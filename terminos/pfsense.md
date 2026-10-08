@@ -1,6 +1,6 @@
 ---
 title: "pfSense"
-category: "Redes y Seguridad Perimetral"
+category: "Redes y seguridad perimetral"
 author: "@aperfer126"
 tags:
   - pfsense
@@ -16,14 +16,14 @@ summary: "Distribución basada en FreeBSD que proporciona funciones de firewall,
 <div class="term-meta-box">
   <div class="term-meta-item">
     <span class="term-meta-label">Categoría</span>
-    <span class="term-meta-value">Redes y Seguridad Perimetral</span>
+    <span class="term-meta-value">Redes y seguridad perimetral</span>
   </div>
   <div class="term-meta-item">
     <span class="term-meta-label">Tipo</span>
     <span class="term-meta-value">Firewall y router de código abierto</span>
   </div>
   <div class="term-meta-item">
-    <span class="term-meta-label">Autor</span>
+    <span class="term-meta-label">Autor / Colaborador</span>
     <span class="term-meta-value"><a href="https://github.com/aperfer126" target="_blank">@aperfer126</a></span>
   </div>
 </div>
@@ -59,11 +59,11 @@ En una red doméstica o de laboratorio, pfSense puede separar la red interna de 
 | LAN | Permitir a los clientes acceder a servicios necesarios | Proporcionar conectividad sin abrir puertos entrantes en WAN. |
 | Gestión | Permitir HTTPS a la consola solo desde equipos administradores | Reducir quién puede cambiar la configuración del firewall. |
 
-=== "Configuración arriesgada"
+=== "Escenario vulnerable / configuración permisiva"
 
     Una regla amplia en WAN que permita cualquier origen y cualquier destino puede publicar servicios internos y dejar accesible la propia administración. También es arriesgado habilitar acceso remoto a la consola sin restringir su origen.
 
-=== "Configuración más segura"
+=== "Escenario seguro / configuración restringida"
 
     Mantén bloqueadas las conexiones entrantes de WAN salvo excepciones justificadas. Si un servicio debe ser público, crea una regla específica para su destino, protocolo y puerto; administra pfSense desde una VLAN de gestión o por VPN, y permite el acceso únicamente a los equipos autorizados.
 

@@ -1,6 +1,6 @@
 ---
 title: "Sandboxing"
-category: "Contención y Aislamiento de Ejecución"
+category: "Contención y aislamiento de ejecución"
 author: "@viviana-lab"
 tags:
   - sandboxing
@@ -9,7 +9,7 @@ tags:
   - seguridad
   - seccomp
   - contenedores
-summary: "Técnica de seguridad que ejecuta software en un entorno aislado para limitar su impacto, su acceso a recursos y su capacidad de comprometer el sistema host." 
+summary: "Técnica de seguridad que ejecuta software en un entorno aislado para limitar su impacto, su acceso a recursos y su capacidad de comprometer el sistema host."
 ---
 
 # Sandboxing
@@ -17,15 +17,15 @@ summary: "Técnica de seguridad que ejecuta software en un entorno aislado para 
 <div class="term-meta-box">
   <div class="term-meta-item">
     <span class="term-meta-label">Categoría</span>
-    <span class="term-meta-value">Contención y Aislamiento de Ejecución</span>
+    <span class="term-meta-value">Contención y aislamiento de ejecución</span>
   </div>
   <div class="term-meta-item">
     <span class="term-meta-label">Enfoque</span>
-    <span class="term-meta-value">Seguridad de Sistemas / Contención</span>
+    <span class="term-meta-value">Seguridad de sistemas / Contención</span>
   </div>
   <div class="term-meta-item">
-    <span class="term-meta-label">Autor</span>
-    <span class="term-meta-value"><a href="https://github.com/cibercelia" target="_blank">@cibercelia</a></span>
+    <span class="term-meta-label">Autor / Colaborador</span>
+    <span class="term-meta-value"><a href="https://github.com/viviana-lab" target="_blank">@viviana-lab</a></span>
   </div>
 </div>
 
@@ -33,16 +33,16 @@ summary: "Técnica de seguridad que ejecuta software en un entorno aislado para 
 
 **Sandboxing** es una técnica de seguridad que consiste en ejecutar un programa, un proceso, un navegador, un script o incluso una aplicación completa dentro de un entorno restringido y aislado del resto del sistema. El objetivo es limitar su capacidad de interactuar con recursos críticos del host, reducir el impacto de un fallo o de un código malicioso y controlar de forma explícita qué archivos, redes o llamadas al sistema puede utilizar.
 
-En esencia, el sandbox actúa como una “caja de seguridad”: todo lo que ocurre dentro de él está sometido a políticas estrictas de ejecución, privilegios, red, almacenamiento y observabilidad. Si un componente se ve comprometido, el daño potencial queda acotado al propio sandbox y no se extiende libremente al sistema operativo o a otros servicios.
+En esencia, el sandbox actúa como una «caja de seguridad»: todo lo que ocurre dentro de él está sometido a políticas estrictas de ejecución, privilegios, red, almacenamiento y observabilidad. Si un componente se ve comprometido, el daño potencial queda acotado al propio sandbox y no se extiende libremente al sistema operativo o a otros servicios.
 
 !!! note "Importante"
-    Sandboxing no elimina la vulnerabilidad en sí, pero sí reduce drásticamente su radio de impacto y ayuda a contener amenazas, análisis de malware, ejecución de código no confiable y errores de configuración.
+    El sandboxing no elimina la vulnerabilidad en sí, pero sí reduce drásticamente su radio de impacto y ayuda a contener amenazas, análisis de malware, ejecución de código no confiable y errores de configuración.
 
 ---
 
-## 🧩 ¿Cómo funciona?
+## ⚙️ ¿Cómo funciona? / Principios fundamentales
 
-La efectiva del sandboxing se basa en combinar varias capas de contención y control:
+La efectividad del *sandboxing* se basa en combinar varias capas de contención y control:
 
 1. **Aislamiento del proceso**: Se utiliza separación de espacios de ejecución, como namespaces y control de montaje, para que el proceso vea solo un subconjunto del sistema de archivos, de la red y de otros recursos.
 2. **Reducción de privilegios**: La aplicación se ejecuta como un usuario no privilegiado, con capacidades mínimas y sin permisos administrativos sobre el sistema host.
@@ -52,33 +52,33 @@ La efectiva del sandboxing se basa en combinar varias capas de contención y con
 
 ```mermaid
 graph TD
-    A[Aplicación o Código No Confiable] --> B[Sandbox]
-    B --> C[Filesystem Aislado]
-    B --> D[Red Limitada]
-    B --> E[Syscalls Filtradas]
-    B --> F[Privilegios Reducidos]
-    F --> G[Host Protegido]
+    A[Aplicación o código no confiable] --> B[Sandbox]
+    B --> C[Sistema de archivos aislado]
+    B --> D[Red limitada]
+    B --> E[Syscalls filtradas]
+    B --> F[Privilegios reducidos]
+    F --> G[Host protegido]
 ```
 
 ---
 
-## 🛡️ Tipos de Sandboxing
+## 🛡️ Tipos de sandboxing
 
-| Tipo | Descripción | Ejemplo Común |
+| Tipo | Descripción | Ejemplo común |
 | :--- | :--- | :--- |
 | **Sandbox de navegador** | Aísla páginas web, scripts y plugins del sistema operativo. | Chrome / Chromium / Firefox |
 | **Sandbox de aplicación** | Ejecuta un programa en un entorno con permisos y acceso mínimos. | Ejecutables de usuarios, plugins, visualizadores |
 | **Sandbox de contenedores** | Aísla procesos mediante namespaces, cgroups y políticas de seguridad. | Docker, Kubernetes, OCI |
 | **Máquina virtual** | Aísla completamente el sistema operativo en un hipervisor. | QEMU, Hyper-V, VMware |
-| **Sandbox de malware / análisis** | Permite ejecutar código sospechoso sin poner en riesgo el entorno real. | Entornos de malware analysis |
+| **Sandbox de malware / análisis** | Permite ejecutar código sospechoso sin poner en riesgo el entorno real. | Entornos de análisis de malware |
 
 ---
 
-## 🎯 Ejemplo Práctico: Contenedor Ejecutándose con Aislamiento
+## 🎯 Ejemplo práctico o escenario de demostración
 
 Un entorno de contenedores puede reforzar el sandboxing con políticas de seguridad para evitar que una aplicación comprometida acceda al anfitrión o a otros servicios.
 
-=== "❌ Configuración Poco Segura"
+=== "Escenario vulnerable / contenedor sin aislamiento"
 
     ```bash
     docker run --privileged --network host --pid host \
@@ -89,7 +89,7 @@ Un entorno de contenedores puede reforzar el sandboxing con políticas de seguri
 
     En este caso, el contenedor tiene casi todo el poder del host. Un fallo de seguridad o ejecución de código malicioso podría escalar el impacto de forma significativa.
 
-=== "✅ Configuración Segura"
+=== "Escenario seguro / contenedor aislado"
 
     ```bash
     docker run --rm --read-only \
@@ -105,19 +105,19 @@ Un entorno de contenedores puede reforzar el sandboxing con políticas de seguri
 
 ---
 
-## 🛡️ Medidas de Mitigación y Buenas Prácticas
+## 🛡️ Medidas de mitigación y buenas prácticas
 
-1. **Reducir privilegios de forma explícita**: Evitar ejecutarse como `root` y eliminar capacidades innecesarias.
-2. **Aplicar perfiles de seguridad**: Usar `seccomp`, `AppArmor` o `SELinux` para limitar syscalls y accesos del proceso.
-3. **Aislar redes**: Desactivar acceso externo o restringir el tráfico por políticas de red mínimas.
-4. **Usar sistemas de archivos de solo lectura**: Cuando sea posible, evitar escritura en el sistema de archivos del contenedor o aplicación.
-5. **Reforzar límites de recursos**: Definir límites de memoria, CPU, procesos y E/S para reducir el riesgo de abuso o denegación de servicio.
-6. **Monitorear comportamiento**: Tener logs, métricas, alertas y análisis de anomalías para detectar abuso del sandbox.
-7. **Mantener imágenes y dependencias actualizadas**: Los parches de kernel, librerías y runtimes reducen la superficie de explotación.
+- [x] **Reducir privilegios de forma explícita**: evitar ejecutarse como `root` y eliminar capacidades innecesarias.
+- [x] **Aplicar perfiles de seguridad**: usar `seccomp`, `AppArmor` o `SELinux` para limitar syscalls y accesos del proceso.
+- [x] **Aislar redes**: desactivar acceso externo o restringir el tráfico por políticas de red mínimas.
+- [x] **Usar sistemas de archivos de solo lectura**: cuando sea posible, evitar escritura en el sistema de archivos del contenedor o aplicación.
+- [x] **Reforzar límites de recursos**: definir límites de memoria, CPU, procesos y E/S para reducir el riesgo de abuso o denegación de servicio.
+- [x] **Monitorizar comportamiento**: disponer de registros, métricas, alertas y análisis de anomalías para detectar abusos del sandbox.
+- [x] **Mantener imágenes y dependencias actualizadas**: los parches de kernel, bibliotecas y runtimes reducen la superficie de explotación.
 
 ---
 
-## 🔗 Referencias
+## 🔗 Referencias y enlaces de interés
 
 - [Docker Security Best Practices](https://docs.docker.com/develop/security-best-practices/)
 - [Linux man page: namespaces](https://man7.org/linux/man-pages/man7/namespaces.7.html)

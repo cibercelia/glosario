@@ -16,7 +16,7 @@ summary: "Práctica de seguridad que reduce la superficie de ataque de sistemas 
 <div class="term-meta-box">
   <div class="term-meta-item">
     <span class="term-meta-label">Categoría</span>
-    <span class="term-meta-value">Seguridad de sistemas / Bastionado</span>
+    <span class="term-meta-value">Seguridad de sistemas</span>
   </div>
   <div class="term-meta-item">
     <span class="term-meta-label">Marcos de referencia</span>

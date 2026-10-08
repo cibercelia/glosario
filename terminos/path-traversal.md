@@ -1,15 +1,15 @@
 ---
-title: "Path Traversal (Traversal de rutas)"
-category: "Vulnerabilidades Web"  # Ej: Criptografía, Redes, Identidad y Acceso, Malware, OWASP Top 10, DevSecOps, etc.
-author: "@Zero-RTC"      # (Pablo Quintana)
+title: "Path traversal (salto de directorios)"
+category: "Vulnerabilidades Web"
+author: "@Zero-RTC"
 tags:
   - ciberseguridad
   - hacking
-  - explotación web
+  - explotacion-web
 summary: "Vulnerabilidad que permite manipular rutas para acceder a archivos fuera del directorio autorizado mediante entradas no validadas."
 ---
 
-# Path Traversal (Traversal de rutas)
+# Path traversal (salto de directorios)
 
 <div class="term-meta-box">
   <div class="term-meta-item">
@@ -23,7 +23,8 @@ summary: "Vulnerabilidad que permite manipular rutas para acceder a archivos fue
 </div>
 
 ## 📖 Definición
-Path Traversal, también llamado **directory traversal**, es una vulnerabilidad que aparece cuando una aplicación usa datos controlados por el usuario para construir una ruta de archivo sin comprobar que el resultado permanezca dentro del directorio autorizado. Un atacante puede manipular esa ruta para leer archivos fuera de dicho directorio y, si la aplicación permite escrituras, modificarlos.
+
+El **path traversal** (o salto de directorios), también denominado *directory traversal*, es una vulnerabilidad que aparece cuando una aplicación usa datos controlados por el usuario para construir una ruta de archivo sin comprobar que el resultado permanezca dentro del directorio autorizado. Un atacante puede manipular esa ruta para leer archivos fuera de dicho directorio y, si la aplicación permite escrituras, modificarlos.
 
 La secuencia `../` representa el directorio padre en sistemas tipo Unix. Las variantes codificadas, las barras invertidas en Windows y las diferencias de normalización pueden ayudar a evadir filtros simples. La debilidad se relaciona con **CWE-22: Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')**.
 
@@ -40,56 +41,57 @@ La secuencia `../` representa el directorio padre en sistemas tipo Unix. Las var
 
 ---
 
-## 🎯 Ejemplo práctico: descarga de archivos
+## 🎯 Ejemplo práctico o escenario de demostración
 
 Una aplicación que descarga informes a partir de un nombre proporcionado por el usuario no debe confiar en que ese nombre señale un archivo dentro de `documentos/`.
 
-=== "Código vulnerable"
+=== "Escenario vulnerable / descarga insegura"
 
     ```python
-  from pathlib import Path
+    from pathlib import Path
 
-  BASE_DIR = Path("documentos")
+    BASE_DIR = Path("documentos")
 
-  def leer_informe(nombre):
-    ruta = BASE_DIR / nombre
-    return ruta.read_text(encoding="utf-8")
+    def leer_informe(nombre):
+        ruta = BASE_DIR / nombre
+        return ruta.read_text(encoding="utf-8")
     ```
 
-  Una entrada como `../../etc/passwd` puede escapar del directorio `documentos` en sistemas tipo Unix.
+    Una entrada como `../../etc/passwd` puede escapar del directorio `documentos` en sistemas tipo Unix.
 
-=== "Código con comprobación del directorio"
+=== "Escenario seguro / comprobación de ruta"
 
     ```python
-  from pathlib import Path
+    from pathlib import Path
 
-  BASE_DIR = Path("documentos").resolve()
+    BASE_DIR = Path("documentos").resolve()
 
-  def leer_informe(nombre):
-    ruta = (BASE_DIR / nombre).resolve()
-    try:
-      ruta.relative_to(BASE_DIR)
-    except ValueError:
-      raise ValueError("Ruta no permitida")
+    def leer_informe(nombre):
+        ruta = (BASE_DIR / nombre).resolve()
+        try:
+            ruta.relative_to(BASE_DIR)
+        except ValueError:
+            raise ValueError("Ruta no permitida")
 
-    return ruta.read_text(encoding="utf-8")
+        return ruta.read_text(encoding="utf-8")
     ```
 
-  `resolve()` normaliza la ruta y resuelve enlaces simbólicos; `relative_to()` comprueba que el destino siga dentro del directorio permitido. En aplicaciones reales, es preferible aceptar identificadores de archivo y buscar la ruta correspondiente en el servidor, en vez de aceptar rutas arbitrarias.
+    `resolve()` normaliza la ruta y resuelve enlaces simbólicos; `relative_to()` comprueba que el destino siga dentro del directorio permitido. En aplicaciones reales, es preferible aceptar identificadores de archivo y buscar la ruta correspondiente en el servidor, en vez de aceptar rutas arbitrarias.
 
 ---
 
 ## 🛡️ Medidas de mitigación y buenas prácticas
 
-- **Evitar rutas arbitrarias**: Usar identificadores o una lista permitida de nombres y resolverlos en el servidor.
-- **Validar el destino final**: Normalizar y resolver la ruta, incluidos los enlaces simbólicos, y verificar que permanezca dentro del directorio base.
-- **No confiar en filtros de cadenas**: Bloquear únicamente `../` es insuficiente por las codificaciones y diferencias entre sistemas operativos.
-- **Aplicar mínimo privilegio**: Ejecutar el servicio con permisos limitados y restringir el acceso del proceso a los archivos que necesita.
-- **Proteger también las escrituras**: Aplicar las mismas comprobaciones a cargas, extracciones de archivos comprimidos y cualquier operación que cree o modifique rutas.
+- [x] **Evitar rutas arbitrarias**: usar identificadores o una lista permitida de nombres y resolverlos en el servidor.
+- [x] **Validar el destino final**: normalizar y resolver la ruta, incluidos los enlaces simbólicos, y verificar que permanezca dentro del directorio base.
+- [x] **No confiar en filtros de cadenas**: bloquear únicamente `../` es insuficiente por las codificaciones y diferencias entre sistemas operativos.
+- [x] **Aplicar mínimo privilegio**: ejecutar el servicio con permisos limitados y restringir el acceso del proceso a los archivos que necesita.
+- [x] **Proteger también las escrituras**: aplicar las mismas comprobaciones a cargas, extracciones de archivos comprimidos y cualquier operación que cree o modifique rutas.
 
 ---
 
-## 🔗 Referencias
+## 🔗 Referencias y enlaces de interés
+
 - [OWASP: Path Traversal](https://owasp.org/www-community/attacks/Path_Traversal)
 - [MITRE CWE-22: Path Traversal](https://cwe.mitre.org/data/definitions/22.html)
 - [PortSwigger Web Security Academy: Path Traversal](https://portswigger.net/web-security/file-path-traversal)

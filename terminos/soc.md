@@ -1,6 +1,6 @@
 ---
 title: "SOC (Centro de operaciones de seguridad)"
-category: "Operaciones y Monitorización de Seguridad"
+category: "Operaciones y monitorización de seguridad"
 author: "@An1Enrique"
 tags:
   - soc
@@ -17,21 +17,21 @@ summary: "Función o equipo encargado de monitorizar continuamente los sistemas 
 <div class="term-meta-box">
   <div class="term-meta-item">
     <span class="term-meta-label">Categoría</span>
-    <span class="term-meta-value">Operaciones y Monitorización de Seguridad</span>
+    <span class="term-meta-value">Operaciones y monitorización de seguridad</span>
   </div>
   <div class="term-meta-item">
     <span class="term-meta-label">Denominación</span>
     <span class="term-meta-value">Security Operations Center (SOC) / Centro de operaciones de seguridad</span>
   </div>
   <div class="term-meta-item">
-    <span class="term-meta-label">Autor</span>
-    <span class="term-meta-value"><a href="https://github.com/cibercelia" target="_blank">@cibercelia</a></span>
+    <span class="term-meta-label">Autor / Colaborador</span>
+    <span class="term-meta-value"><a href="https://github.com/An1Enrique" target="_blank">@An1Enrique</a></span>
   </div>
 </div>
 
 ## 📖 Definición
 
-Un **SOC (Security Operations Center)** o **Centro de Operaciones de Seguridad** es la función, equipo o unidad responsable de proteger de forma continua los activos digitales de una organización. Para ello, centraliza la monitorización de eventos, identifica posibles amenazas, investiga las alertas y coordina la respuesta y recuperación ante incidentes de ciberseguridad.
+Un **SOC** (*Security Operations Center*) o **centro de operaciones de seguridad** es la función, equipo o unidad responsable de proteger de forma continua los activos digitales de una organización. Para ello, centraliza la monitorización de eventos, identifica posibles amenazas, investiga las alertas y coordina la respuesta y recuperación ante incidentes de ciberseguridad.
 
 Un SOC combina personas, procesos y tecnología. Puede operar con personal interno, mediante un proveedor externo (**MSSP**, *Managed Security Service Provider*) o con un modelo híbrido. Sus herramientas suelen incluir soluciones **SIEM** para recopilar y correlacionar eventos, **EDR/XDR** para observar endpoints y cargas de trabajo, inteligencia de amenazas y plataformas **SOAR** para automatizar tareas repetitivas.
 
@@ -64,18 +64,18 @@ Los niveles de operación suelen organizarse en **L1** (triaje y clasificación)
 
 ---
 
-## 🎯 Ejemplo práctico: detección de una cuenta comprometida
+## 🎯 Ejemplo práctico o escenario de demostración
 
 Una cuenta corporativa inicia sesión desde una ubicación inusual y, pocos minutos después, descarga un volumen elevado de información y crea una regla de reenvío de correo.
 
-=== "❌ Operación deficiente"
+=== "Escenario vulnerable / operación deficiente"
 
     - Cada sistema conserva sus alertas sin enviarlas a un punto común de análisis.
     - No existe una línea de guardia ni un procedimiento para clasificar la alerta.
     - El equipo deshabilita la cuenta sin preservar evidencias ni comprobar otras sesiones activas.
     - No se revisan las reglas de detección ni se documenta el incidente, por lo que el mismo patrón puede repetirse.
 
-=== "✅ Operación de un SOC maduro"
+=== "Escenario seguro / operación de un SOC maduro"
 
     1. El proveedor de identidad, el correo y el proxy envían telemetría al SIEM.
     2. Una regla correlaciona el inicio de sesión anómalo, la descarga masiva y la creación de la regla de reenvío, y asigna una prioridad alta.

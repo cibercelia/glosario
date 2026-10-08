@@ -1,6 +1,6 @@
 ---
 title: "Sistema de prevención de intrusiones (IPS)"
-category: "Redes / Seguridad de Red"
+category: "Redes / Seguridad de red"
 author: "@Mole43"
 tags:
   - ciberseguridad
@@ -16,7 +16,7 @@ summary: "Sistema de seguridad de red que monitoriza el tráfico en tiempo real 
 <div class="term-meta-box">
   <div class="term-meta-item">
     <span class="term-meta-label">Categoría</span>
-    <span class="term-meta-value">Redes / Seguridad de Red</span>
+    <span class="term-meta-value">Redes / Seguridad de red</span>
   </div>
   <div class="term-meta-item">
     <span class="term-meta-label">Autor / Colaborador</span>
@@ -26,12 +26,12 @@ summary: "Sistema de seguridad de red que monitoriza el tráfico en tiempo real 
 
 ## 📖 Definición
 
-Un **Sistema de Prevención de Intrusiones (IPS, Intrusion Prevention System)** es una solución de seguridad de red que inspecciona el tráfico en tiempo real para detectar actividades sospechosas, patrones maliciosos o comportamientos anómalos, y responde de manera automática para bloquear, filtrar o mitigar la amenaza antes de que esta perjudique los sistemas o los datos de la organización.
+Un **sistema de prevención de intrusiones** (**IPS**, *Intrusion Prevention System*) es una solución de seguridad de red que inspecciona el tráfico en tiempo real para detectar actividades sospechosas, patrones maliciosos o comportamientos anómalos, y responde de manera automática para bloquear, filtrar o mitigar la amenaza antes de que esta perjudique los sistemas o los datos de la organización.
 
 El IPS suele desplegarse en un punto estratégico de la red, como entre el perímetro de Internet y la infraestructura interna, o en segmentos críticos de la organización. A diferencia de un simple monitor de tráfico, su valor principal reside en su capacidad de actuar de forma proactiva: no solo identifica una amenaza, sino que intenta detenerla en el mismo instante en que aparece.
 
 !!! note "Diferencia con IDS"
-    Un **IDS (Intrusion Detection System)** se centra en detectar y alertar. Un **IPS** va un paso más allá y puede bloquear la conexión, descartar paquetes o aplicar reglas de mitigación automáticamente.
+    Un **sistema de detección de intrusiones** (**IDS**, *Intrusion Detection System*) se centra en detectar y alertar. Un **IPS** va un paso más allá y puede bloquear la conexión, descartar paquetes o aplicar reglas de mitigación automáticamente.
 
 ---
 
@@ -40,11 +40,11 @@ El IPS suele desplegarse en un punto estratégico de la red, como entre el perí
 El funcionamiento de un IPS se basa en la combinación de inspección del tráfico, análisis de contenido y respuesta automatizada:
 
 1. **Captura del tráfico**: El IPS recibe una copia o se sitúa en línea con el flujo de red para observar paquetes, conexiones y sesiones entrantes y salientes.
-2. **Inspección profunda**: Analiza protocolos, cabeceras, payloads y patrones de comportamiento para detectar firmas, anomalías o actividades conocidas de malware, escaneos, acceso no autorizado o exfiltración.
+2. **Inspección profunda**: Analiza protocolos, cabeceras, cargas útiles (*payloads*) y patrones de comportamiento para detectar firmas, anomalías o actividades conocidas de malware, escaneos, acceso no autorizado o exfiltración.
 3. **Motor de detección**: Emplea distintas técnicas, como:
    - **Firmas**: comparan tráfico con patrones de ataque conocidos.
    - **Detección por anomalías**: identifica comportamientos fuera de la norma.
-   - **Reputación / listas negras**: bloquea origen o destinos considerados maliciosos.
+   - **Reputación / listas negras**: bloquea orígenes o destinos considerados maliciosos.
    - **Inspección de protocolos**: valida que la comunicación respete el comportamiento esperado.
 4. **Respuesta automática**: Cuando se activa una regla, el IPS puede descartar paquetes, cerrar conexiones, bloquear direcciones IP, enviar alertas o ejecutar acciones definidas por la política de seguridad.
 5. **Registro y análisis forense**: Guarda eventos y alertas para estudio posterior, identificación de amenazas y mejora de las reglas de prevención.
@@ -57,7 +57,7 @@ En otras palabras, un IPS actúa como una capa activa de defensa en profundidad:
 
 Supongamos que un atacante intenta escanear puertos de un servidor interno o lanzar un ataque de fuerza bruta contra un servicio web. El IPS puede detectar patrones típicos del comportamiento malicioso.
 
-=== "Escenario de ataque"
+=== "Escenario vulnerable / detección de ataque"
 
     ```text
     2026-10-06 12:14:22 ALERT: TCP scan detected from 203.0.113.45
@@ -65,7 +65,7 @@ Supongamos que un atacante intenta escanear puertos de un servidor interno o lan
     2026-10-06 12:16:10 ACTION: Blocked source IP 203.0.113.45 for 600 seconds
     ```
 
-=== "Respuesta del IPS"
+=== "Escenario seguro / respuesta del IPS"
 
     ```text
     Regla activada: "Brute Force Login Attempt"

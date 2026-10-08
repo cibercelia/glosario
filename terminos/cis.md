@@ -22,8 +22,8 @@ summary: "Organización sin ánimo de lucro que desarrolla controles y guías de
     <span class="term-meta-value">Center for Internet Security (CIS)</span>
   </div>
   <div class="term-meta-item">
-    <span class="term-meta-label">Autor</span>
-    <span class="term-meta-value">Comunidad</span>
+    <span class="term-meta-label">Autor / Colaborador</span>
+    <span class="term-meta-value"><a href="https://github.com/Honestdwarf9573" target="_blank">@Honestdwarf9573</a></span>
   </div>
 </div>
 
@@ -54,13 +54,13 @@ CIS publica recursos que permiten abordar la seguridad desde dos perspectivas co
 
 Una organización quiere bastionar sus servidores Ubuntu y utilizar las recomendaciones CIS como línea base. No debería aplicar indiscriminadamente todas las opciones sin revisar su impacto: primero identifica qué servicios ofrece cada servidor, selecciona el Benchmark y el nivel apropiados, y prueba los cambios antes de extenderlos.
 
-=== "Aplicación deficiente"
+=== "Escenario deficiente / aplicación incorrecta"
 
     - Se ejecuta una herramienta de evaluación sin confirmar que el Benchmark corresponde a la versión del sistema.
     - Se aplican todas las recomendaciones de forma automática, incluidas las que pueden deshabilitar servicios necesarios.
     - No se documentan las excepciones ni se verifica el funcionamiento de las aplicaciones.
 
-=== "Aplicación controlada"
+=== "Escenario seguro / aplicación controlada"
 
     1. Se inventarían los servidores y se confirma la versión y el propósito de cada uno.
     2. Se consulta el CIS Benchmark correspondiente y se selecciona un nivel compatible con los requisitos del entorno.

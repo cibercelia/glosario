@@ -1,6 +1,6 @@
 ---
 title: "Autenticación multifactor (MFA)"
-category: "Identidad y Gestión de Accesos"
+category: "Identidad y gestión de accesos"
 author: "@mariocq-ciber"
 tags:
   - mfa
@@ -16,14 +16,14 @@ summary: "Método de autenticación que exige dos o más factores independientes
 <div class="term-meta-box">
   <div class="term-meta-item">
     <span class="term-meta-label">Categoría</span>
-    <span class="term-meta-value">Identidad y Gestión de Accesos</span>
+    <span class="term-meta-value">Identidad y gestión de accesos</span>
   </div>
   <div class="term-meta-item">
     <span class="term-meta-label">Estándar</span>
     <span class="term-meta-value">NIST SP 800-63B-4 | FIDO2 / WebAuthn</span>
   </div>
   <div class="term-meta-item">
-    <span class="term-meta-label">Autor</span>
+    <span class="term-meta-label">Autor / Colaborador</span>
     <span class="term-meta-value"><a href="https://github.com/mariocq-ciber" target="_blank">@mariocq-ciber</a></span>
   </div>
 </div>

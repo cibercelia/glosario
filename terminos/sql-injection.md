@@ -1,6 +1,6 @@
 ---
 title: "Inyección SQL (SQL injection - SQLi)"
-category: "Vulnerabilidades Web / OWASP"
+category: "Vulnerabilidades Web"
 author: "@cibercelia"
 tags:
   - owasp-top-10
@@ -16,28 +16,28 @@ summary: "Vulnerabilidad de seguridad web que permite a un atacante interferir e
 <div class="term-meta-box">
   <div class="term-meta-item">
     <span class="term-meta-label">Categoría</span>
-    <span class="term-meta-value">Vulnerabilidades Web / OWASP</span>
+    <span class="term-meta-value">Vulnerabilidades Web</span>
   </div>
   <div class="term-meta-item">
     <span class="term-meta-label">Identificadores</span>
     <span class="term-meta-value">CWE-89 | OWASP A03:2021</span>
   </div>
   <div class="term-meta-item">
-    <span class="term-meta-label">Autor</span>
+    <span class="term-meta-label">Autor / Colaborador</span>
     <span class="term-meta-value"><a href="https://github.com/cibercelia" target="_blank">@cibercelia</a></span>
   </div>
 </div>
 
 ## 📖 Definición
 
-La **Inyección SQL (SQLi)** es una vulnerabilidad de inyección de código en la capa de persistencia donde datos no confiables introducidos por el usuario son concatenados directamente en una sentencia SQL sin sanitización ni parametrización previa. Esto permite al atacante manipular la estructura lógica de la consulta original, logrando leer, modificar o eliminar datos confidenciales, eludir mecanismos de autenticación e incluso ejecutar comandos en el sistema operativo subyacente.
+La **inyección SQL (SQLi)** es una vulnerabilidad de inyección de código en la capa de persistencia donde datos no confiables introducidos por el usuario son concatenados directamente en una sentencia SQL sin sanitización ni parametrización previa. Esto permite al atacante manipular la estructura lógica de la consulta original, logrando leer, modificar o eliminar datos confidenciales, eludir mecanismos de autenticación e incluso ejecutar comandos en el sistema operativo subyacente.
 
 !!! danger "Advertencia crítica"
     SQLi se mantiene de manera recurrente entre las vulnerabilidades más críticas del **OWASP Top 10** debido a su severo impacto en la confidencialidad, integridad y disponibilidad del negocio.
 
 ---
 
-## 🧭 Tipos principales de SQLi
+## 🧭 Tipos principales de inyección SQL
 
 | Tipo | Denominación | Descripción |
 | :--- | :--- | :--- |
@@ -47,11 +47,11 @@ La **Inyección SQL (SQLi)** es una vulnerabilidad de inyección de código en l
 
 ---
 
-## 🎯 Ejemplo práctico: autenticación vulnerable vs. segura
+## 🎯 Ejemplo práctico o escenario de demostración
 
 Supongamos un formulario de inicio de sesión vulnerable donde el atacante introduce como usuario: `' OR 1=1 --`.
 
-=== "❌ Código inseguro (concatenación)"
+=== "Escenario vulnerable / código inseguro (concatenación)"
 
     ```python linenums="1"
     import sqlite3
@@ -68,7 +68,7 @@ Supongamos un formulario de inicio de sesión vulnerable donde el atacante intro
         return cursor.fetchone()
     ```
 
-=== "✅ Código seguro (consultas parametrizadas)"
+=== "Escenario seguro / código remediado (consultas parametrizadas)"
 
     ```python linenums="1"
     import sqlite3
@@ -86,17 +86,17 @@ Supongamos un formulario de inicio de sesión vulnerable donde el atacante intro
 
 ---
 
-## 🛡️ Medidas de mitigación
+## 🛡️ Medidas de mitigación y buenas prácticas
 
-1. **Sentencias Preparadas (Prepared Statements / Parameterized Queries)**: Es la defensa primaria e imprescindible. Separa el código SQL de los datos.
-2. **Uso de ORMs Modernos**: Frameworks como SQLAlchemy, Hibernate o Entity Framework utilizan consultas parametrizadas de forma nativa por defecto.
-3. **Principio de Mínimo Privilegio**: La cuenta de base de datos usada por la aplicación web no debe tener privilegios de superadministrador (`sa`, `root`, `dba`).
-4. **Validación y listas blancas de entrada**: Validar formato de datos, tipos y longitud antes de procesarlos.
-5. **Web Application Firewall (WAF)**: Capa secundaria de defensa en profundidad para detectar patrones maliciosos en tránsito.
+- [x] **Sentencias preparadas (*prepared statements* o consultas parametrizadas)**: es la defensa primaria e imprescindible al separar el código SQL de los datos.
+- [x] **Uso de ORM modernos**: *frameworks* como SQLAlchemy, Hibernate o Entity Framework utilizan consultas parametrizadas de forma nativa por defecto.
+- [x] **Principio de menor privilegio**: la cuenta de base de datos usada por la aplicación web no debe tener privilegios de superadministrador (`sa`, `root`, `dba`).
+- [x] **Validación y listas blancas de entrada**: validar formato de datos, tipos y longitud antes de procesarlos.
+- [x] **Cortafuegos de aplicaciones web (WAF)**: capa secundaria de defensa en profundidad para detectar patrones maliciosos en tránsito.
 
 ---
 
-## 🔗 Referencias
+## 🔗 Referencias y enlaces de interés
 
 - [OWASP SQL Injection Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html)
 - [PortSwigger Web Security Academy - SQL Injection](https://portswigger.net/web-security/sql-injection)

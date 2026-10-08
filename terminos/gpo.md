@@ -1,22 +1,22 @@
 ---
-title: "GPO (Objetos de directiva de grupo)"
-category: "Identidad y Administración de Sistemas"
+title: "GPO (objetos de directiva de grupo)"
+category: "Identidad y administración de sistemas"
 author: "@AndriySym"
 tags:
   - gpo
   - active-directory
   - windows
   - hardening
-  - gestión-de-configuración
+  - gestion-de-configuracion
 summary: "Conjunto centralizado de directivas que permite administrar la configuración y seguridad de usuarios y equipos Windows en un dominio o de forma local."
 ---
 
-# GPO (Objetos de directiva de grupo)
+# GPO (objetos de directiva de grupo)
 
 <div class="term-meta-box">
   <div class="term-meta-item">
     <span class="term-meta-label">Categoría</span>
-    <span class="term-meta-value">Identidad y Administración de Sistemas</span>
+    <span class="term-meta-value">Identidad y administración de sistemas</span>
   </div>
   <div class="term-meta-item">
     <span class="term-meta-label">Tecnología</span>
@@ -30,7 +30,7 @@ summary: "Conjunto centralizado de directivas que permite administrar la configu
 
 ## 📖 Definición
 
-Un **Objeto de Política de Grupo** (*Group Policy Object*, **GPO**) es un conjunto de configuraciones que permite administrar de forma centralizada usuarios y equipos Windows. En un entorno de **Active Directory Domain Services (AD DS)**, las GPO se vinculan a sitios, dominios u unidades organizativas (OU) para aplicar configuraciones como requisitos de contraseña, reglas del firewall, instalación de software, scripts de inicio o restricciones del sistema.
+Un **objeto de directiva de grupo** (*Group Policy Object*, **GPO**) es un conjunto de configuraciones que permite administrar de forma centralizada usuarios y equipos Windows. En un entorno de **Active Directory Domain Services (AD DS)**, las GPO se vinculan a sitios, dominios u unidades organizativas (OU) para aplicar configuraciones como requisitos de contraseña, reglas del firewall, instalación de software, scripts de inicio o restricciones del sistema.
 
 Una GPO de dominio se compone de información almacenada en Active Directory y de archivos de configuración ubicados en **SYSVOL**; ambos componentes deben estar disponibles y replicados para que los clientes procesen la directiva. Windows también permite definir directivas locales en equipos que no pertenecen a un dominio.
 
@@ -52,7 +52,7 @@ Una GPO de dominio se compone de información almacenada en Active Directory y d
 
 Un equipo de seguridad necesita exigir el bloqueo automático de sesión en los equipos de administración. Aplicar el ajuste a todo el dominio puede afectar a usuarios y equipos que no forman parte del alcance previsto.
 
-=== "Asignación incorrecta"
+=== "Escenario vulnerable / asignación incorrecta"
 
     Se vincula la GPO a la raíz del dominio y se deja que se aplique a todos los equipos autenticados. Esto amplía innecesariamente el alcance y hace más difícil anticipar el impacto del cambio.
 
@@ -62,7 +62,7 @@ Un equipo de seguridad necesita exigir el bloqueo automático de sesión en los 
     Configuración: tiempo de inactividad antes del bloqueo
     ```
 
-=== "Asignación recomendada"
+=== "Escenario seguro / asignación recomendada"
 
     Se crea una OU de prueba y después una OU de equipos de administración. Se vincula allí la GPO y se limita su aplicación al grupo de equipos previsto, comprobando antes el resultado efectivo.
 
@@ -78,7 +78,7 @@ Un equipo de seguridad necesita exigir el bloqueo automático de sesión en los 
 ## 🛡️ Medidas de mitigación y buenas prácticas
 
 - [x] **Aplicar mínimo privilegio**: Restringir quién puede crear, editar, vincular o delegar GPO; revisar periódicamente permisos y delegaciones.
-- [x] **Limitar el alcance**: Vincular cada directiva a la OU adecuada y usar filtrado de seguridad explícito. Evitar filtros WMI complejos si una estructura de OUs clara resuelve el caso.
+- [x] **Limitar el alcance**: Vincular cada directiva a la OU adecuada y usar filtrado de seguridad explícito. Evitar filtros WMI complejos si una estructura de OU clara resuelve el caso.
 - [x] **Probar antes del despliegue**: Usar una OU o grupo piloto, revisar el modelado de directivas en GPMC y generar informes con `gpresult` o `Get-GPOReport`.
 - [x] **Auditar cambios**: Registrar modificaciones, mantener copias de seguridad de las GPO y revisar cambios inesperados en Active Directory y SYSVOL.
 - [x] **Separar funciones**: Evitar que las cuentas administrativas de uso diario tengan permisos para modificar directivas de dominio.

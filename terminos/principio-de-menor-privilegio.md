@@ -1,5 +1,5 @@
 ---
-title: "Principio de Menor Privilegio"
+title: "Principio de menor privilegio"
 category: "Identidad y Acceso"
 author: "@radasir"
 tags:
@@ -11,8 +11,7 @@ tags:
 summary: "Principio de seguridad que limita los permisos de usuarios y procesos al mínimo necesario para realizar una tarea autorizada."
 ---
 
-# Principio de Menor Privilegio
-
+# Principio de menor privilegio
 
 <div class="term-meta-box">
   <div class="term-meta-item">
@@ -25,7 +24,6 @@ summary: "Principio de seguridad que limita los permisos de usuarios y procesos 
   </div>
 </div>
 
-
 ## 📖 Definición
 
 El **principio de menor privilegio** establece que un usuario, proceso, cuenta de servicio o componente de un sistema debe recibir únicamente los permisos, recursos y autorizaciones mínimos necesarios para completar una tarea legítima.
@@ -34,14 +32,12 @@ NIST define este principio como una arquitectura de seguridad en la que cada ent
 
 Este principio forma parte de los principios clásicos de diseño seguro descritos por Jerome H. Saltzer y Michael D. Schroeder. Los autores indican que cada programa y usuario debe operar con el conjunto mínimo de privilegios requerido para terminar su trabajo. Su propósito principal es limitar el daño que puede producir un error, accidente, mala configuración o compromiso de una cuenta.
 
-!!! note "Nota Importante"
+!!! note "Nota importante"
     El menor privilegio no significa impedir que los usuarios trabajen. Significa conceder permisos basados en una necesidad concreta, documentada y revisable, evitando privilegios amplios, permanentes o heredados sin justificación.
-
 
 ---
 
-
-## ⚙️ ¿Cómo funciona? / Principios Fundamentales
+## ⚙️ ¿Cómo funciona? / Principios fundamentales
 
 El principio se implementa definiendo qué entidad necesita acceder a qué recurso, para qué acción y bajo qué condiciones.
 
@@ -61,15 +57,13 @@ El principio se implementa definiendo qué entidad necesita acceder a qué recur
 
 8. **Registrar acciones privilegiadas**: El uso de funciones administrativas debe quedar registrado para facilitar la detección de abuso, la investigación de incidentes y las auditorías.
 
-
 ---
 
-
-## 🎯 Ejemplo Práctico o Escenario de Demostración
+## 🎯 Ejemplo práctico o escenario de demostración
 
 Una API de gestión de usuarios dispone de una operación para eliminar cuentas. Un usuario normal autenticado no debe poder ejecutar esa operación aunque conozca o modifique directamente la URL del endpoint.
 
-=== "Escenario Vulnerable / Incorrecto"
+=== "Escenario vulnerable / incorrecto"
 
     ```java
     @DeleteMapping("/api/users/{id}")
@@ -81,7 +75,7 @@ Una API de gestión de usuarios dispone de una operación para eliminar cuentas.
 
     En este caso, cualquier usuario que llegue al endpoint podría eliminar una cuenta si no existe una comprobación de autorización en el servidor. Ocultar el botón "Eliminar" en el frontend no evita que un atacante envíe manualmente una petición `DELETE`.
 
-=== "Escenario Seguro / Remediado"
+=== "Escenario seguro / remediado"
 
     ```java
     @DeleteMapping("/api/users/{id}")
@@ -108,11 +102,9 @@ Una API de gestión de usuarios dispone de una operación para eliminar cuentas.
 
 La matriz debe convertirse en pruebas automatizadas para verificar que los roles no puedan realizar acciones no autorizadas, incluidos casos de escalada horizontal y vertical de privilegios.
 
-
 ---
 
-
-## 🛡️ Medidas de Mitigación y Buenas Prácticas
+## 🛡️ Medidas de mitigación y buenas prácticas
 
 - [x] **Aplicar denegación por defecto**: Permitir el acceso solamente cuando una política, rol o regla lo autorice explícitamente.
 
@@ -134,11 +126,9 @@ La matriz debe convertirse en pruebas automatizadas para verificar que los roles
 
 - [x] **Aplicar separación de funciones**: Para acciones críticas, evitar que una sola identidad pueda iniciar, aprobar y ejecutar todo el proceso.
 
-
 ---
 
-
-## 🔗 Referencias y Enlaces de Interés
+## 🔗 Referencias y enlaces de interés
 
 - [NIST CSRC Glossary: Least Privilege](https://csrc.nist.gov/glossary/term/least_privilege)
 - [NIST SP 800-53 Rev. 5 — Control AC-6: Least Privilege](https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final)

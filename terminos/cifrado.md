@@ -49,7 +49,7 @@ Se utiliza para proteger la **confidencialidad** de datos almacenados (en reposo
 
 Base64 no protege un secreto: cualquiera puede decodificarlo. Para información confidencial, utiliza una biblioteca criptográfica mantenida y protege la clave por separado de los datos cifrados.
 
-=== "Escenario incorrecto: Base64"
+=== "Escenario vulnerable / incorrecto: codificación con Base64"
 
     ```python
     import base64
@@ -61,7 +61,7 @@ Base64 no protege un secreto: cualquiera puede decodificarlo. Para información 
     print(base64.b64decode(representacion).decode("utf-8"))
     ```
 
-=== "Escenario seguro: cifrado autenticado"
+=== "Escenario seguro / remediado: cifrado autenticado"
 
     ```python
     from cryptography.fernet import Fernet
