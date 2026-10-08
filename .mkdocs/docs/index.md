@@ -6,7 +6,10 @@ description: "Glosario Colaborativo de Ciberseguridad creado por el alumnado con
 <div class="hero-banner" id="top">
   <h1>🛡️ Glosario colaborativo de ciberseguridad</h1>
   <p>
-    Bienvenido al repositorio de conocimiento técnico y terminología de ciberseguridad del <strong>IES Celia Viñas</strong>. Este proyecto sigue la metodología <strong>Docs-as-Code</strong>, donde cada término es investigado, redactado y mantenido colaborativamente por el alumnado mediante Pull Requests.
+    Bienvenido al repositorio de conocimiento técnico y terminología de ciberseguridad realizado por el alumnado del <strong>Curso de Especialización de Ciberseguridad</strong> del <strong>IES Celia Viñas</strong>. 
+  </p>
+  <p>
+    Este proyecto sigue la metodología <strong>Docs-as-Code</strong>, donde cada término es investigado, redactado y mantenido colaborativamente por el alumnado mediante Pull Requests.
   </p>
 </div>
 
